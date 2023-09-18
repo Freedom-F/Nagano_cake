@@ -4,7 +4,6 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
   def change
     create_table :customers do |t|
       ## Database authenticatable
-      t.integer :id,                null: false, auto_increment: true
       t.string :last_name,          null: false
       t.string :first_name,         null: false
       t.string :last_name_kana,     null: false
@@ -15,8 +14,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
       t.boolean :is_deleted,        null: false, default: false
-      t.datetime :created_at,       null: false, default: now
-      t.datetime :updated_at,       null: false, default: now
+    
 
       ## Recoverable
       t.string   :reset_password_token
