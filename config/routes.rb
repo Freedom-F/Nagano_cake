@@ -16,14 +16,14 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
 #顧客
 root to: 'public/homes#top'
-get 'public/home/about' => "homes#about", as:"about"
-get 'public/customers/mypage' => "customers#show"
-patch 'public/customers/information' => "customers#update"
-get 'public/customers/confirm' => "customers#confirm"
-patch 'public/costomers/out' => "customers#out"
-delete 'public/cart_items/destroy_all' => "cart_items#destroy_all"
-post 'public/orders/confirm' => "orders/confirm"
-get 'public/orders/thanx' => "orders#thanx"
+get 'public/homes/about', to: 'public/homes#about', as: 'about'
+get'public/customers/mypage', :to =>'customers#show'
+patch 'public/customers/information' => "public/customers#update"
+get 'public/customers/confirm' => "public/customers#confirm"
+patch 'public/costomers/out' => "public/customers#out"
+delete 'public/cart_items/destroy_all' => "public/cart_items#destroy_all"
+post 'public/orders/confirm' => "public/orders/confirm"
+get 'public/orders/thanx' => "public/orders#thanx"
 
 namespace :public do
     get 'addresses/index'
