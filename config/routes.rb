@@ -54,16 +54,8 @@ namespace :admin do
     get 'customers/show'
     get 'customers/edit'
     patch 'customers/update'
-    get 'genres/index'
-    post 'genres/create'
-    get 'genres/edit'
-    patch 'genres/update'
-    get 'items/index'
-    get 'items/new'
-    post 'items/create'
-    get 'items/show'
-    get 'items/edit'
-    patch 'items/update'
+    resources :genres, only: [:index, :edit, :create, :update]
+    resources :items, only: [:index, :create, :new, :show, :edit, :update]
     get 'homes/admin' => "homes#top"
   end
 
