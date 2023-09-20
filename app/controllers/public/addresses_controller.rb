@@ -1,6 +1,5 @@
 class Public::AddressesController < ApplicationController
   def index
-    @addresses = current_customer
   end
 
   def edit
@@ -14,5 +13,11 @@ class Public::AddressesController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def address_params
+    params.require(:address).permit(:customer_id,:name,:address,:post_code)
   end
 end
