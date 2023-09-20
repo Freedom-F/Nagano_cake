@@ -51,11 +51,8 @@ namespace :public do
 namespace :admin do
   
     root to: "homes#top"
-    resources :orders, only: [:show, :update] 
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-    patch 'customers/update'
+    resources :orders, only: [:show, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
     resources :genres, only: [:index, :edit, :create, :update]
     resources :items, only: [:index, :create, :new, :show, :edit, :update]
 
