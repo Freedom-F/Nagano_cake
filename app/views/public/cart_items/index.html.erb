@@ -1,6 +1,10 @@
 
 <h1>ショッピングカート</h1>
 
+<div class="actions">
+  <%= link_to "カートを空にする",  public_cart_items_destroy_all_path, method: :delete %>
+</div>
+
 <table>
   <thead>
     <tr>
@@ -14,17 +18,14 @@
     <% @cart_items.each do |cart_item| %>
       <tr>
         <td><%= cart_item.item.name %></td>
-        <td><%= number_to_currency(cart_item.item.tax_included_price) %></td>
-        <td><%= cart_item.quantity %></td>
-        <td><%= number_to_currency(cart_item.subtotal) %></td>
+        <td><%= number_to_currency(cart_item.item.tax_excluded_price) %></td>
+        <td><%= cart_item.amount %></td>
+
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<div class="actions">
-  <%= link_to "カートを空にする",  public_cart_items_destroy_all_path, method: :delete %>
-</div>
 
 <div class="total">
   合計金額: <%= number_to_currency(@total_price) %>
