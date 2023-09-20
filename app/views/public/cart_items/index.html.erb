@@ -1,0 +1,36 @@
+
+<h1>ショッピングカート</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価（税込）</th>
+      <th>数量</th>
+      <th>小計</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cart_items.each do |cart_item| %>
+      <tr>
+        <td><%= cart_item.item.name %></td>
+        <td><%= number_to_currency(cart_item.item.tax_included_price) %></td>
+        <td><%= cart_item.quantity %></td>
+        <td><%= number_to_currency(cart_item.subtotal) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="actions">
+  <%= link_to "カートを空にする",  public_cart_items_destroy_all_path, method: :delete %>
+</div>
+
+<div class="total">
+  合計金額: <%= number_to_currency(@total_price) %>
+</div>
+
+<div class="actions">
+  <%= link_to "買い物を続ける", public_items_index_path %>
+  <%= link_to "情報入力に進む", public_orders_new_path %>
+</div>

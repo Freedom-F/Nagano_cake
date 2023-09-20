@@ -16,9 +16,9 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
 
 #顧客
-
+root to: 'public/homes#top'
 namespace :public do
-    root to: 'homes#top'
+
     get 'homes/about', to: 'homes#about', as: 'about'
     get'customers/mypage', :to =>'customers#show'
     patch 'customers/information' => "customers#update"
@@ -41,7 +41,7 @@ namespace :public do
     delete 'cart_items/destroy'
     post 'cart_items/create'
     get 'items/index'
-    get 'items/show'
+    get 'items/:id' => "items#show"
      resources :customers do
     get 'information/edit', to: 'customers#edit', on: :member, as: 'edit_information'
     end
@@ -49,9 +49,9 @@ namespace :public do
 
 #管理者
 namespace :admin do
-  
+
     root to: "homes#top"
-    resources :orders, only: [:show, :update] 
+    resources :orders, only: [:show, :update]
     get 'customers/index'
     get 'customers/show'
     get 'customers/edit'
