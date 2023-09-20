@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="mt-4 mb-4">
+        <%= @customer.last_name + @customer.first_name %>さんの会員情報編集
+      </h2>
+      
+      <%= form_with model: @customer, url: admin_customer_path(@customer) do |f| %>
+        <div class="form-group row">
+          <label for="staticID" class="col-2 mr-4 col-form-label">会員ID</label>
+          <%= f.text_field :id, class: "col-6 form-control-plaintext", id: "staticID" %>
+        </div>
+        <div class="form-group row">
+          <label for="inputName" class="col-2 mr-4 col-form-label">氏名</label>
+          <%= f.text_field :last_name, class: "col-3 mr-5 form-control", id: "inputName" %>
+          <%= f.text_field :first_name, class: "col-3 form-control", id: "inputName" %>
+        </div>
+        <div class="form-group row">
+          <label for="inputKana" class="col-2 mr-4 col-form-label">フリガナ</label>
+          <%= f.text_field :last_name_kana, class: "col-3 mr-5 form-control", id: "inputKana" %>
+          <%= f.text_field :first_name_kana, class: "col-3 form-control", id: "inputKana" %>
+        </div>
+        <div class="form-group row">
+          <label for="inputPostCode" class="col-2 mr-4 col-form-label">郵便番号</label>
+          <%= f.text_field :post_code, class: "col-3 form-control", id: "inputPostCode" %>
+        </div>
+        <div class="form-group row">
+          <label for="inputAddress" class="col-2 mr-4 col-form-label">住所</label>
+          <%= f.text_field :address, class: "col-8 form-control", id: "inputAddress" %>
+        </div>
+        <div class="form-group row">
+          <label for="inputTeleNum" class="col-2 mr-4 col-form-label">電話番号</label>
+          <%= f.text_field :phone_number, class: "col-3 form-control", id: "inputTeleNum" %>
+        </div>
+        <div class="form-group row">
+          <label for="inputEmail" class="col-2 mr-4 col-form-label">メールアドレス</label>
+          <%= f.text_field :email, class: "col-3 form-control", id: "inputEmail" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
