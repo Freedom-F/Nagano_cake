@@ -14,6 +14,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
+
 #顧客
 
 namespace :public do
@@ -48,6 +49,8 @@ namespace :public do
 
 #管理者
 namespace :admin do
+  
+    root to: "homes#top"
     get 'orders/show'
     patch 'orders/update'
     get 'customers/index'
@@ -56,7 +59,7 @@ namespace :admin do
     patch 'customers/update'
     resources :genres, only: [:index, :edit, :create, :update]
     resources :items, only: [:index, :create, :new, :show, :edit, :update]
-    get 'homes/admin' => "homes#top"
+
   end
 
 end
