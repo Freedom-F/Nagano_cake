@@ -15,17 +15,17 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
 #顧客
-root to: 'public/homes#top'
-get 'public/homes/about', to: 'public/homes#about', as: 'about'
-get'public/customers/mypage', :to =>'customers#show'
-patch 'public/customers/information' => "public/customers#update"
-get 'public/customers/confirm' => "public/customers#confirm"
-patch 'public/costomers/out' => "public/customers#out"
-delete 'public/cart_items/destroy_all' => "public/cart_items#destroy_all"
-post 'public/orders/confirm' => "public/orders/confirm"
-get 'public/orders/thanx' => "public/orders#thanx"
 
 namespace :public do
+    root to: 'homes#top'
+    get 'homes/about', to: 'homes#about', as: 'about'
+    get'customers/mypage', :to =>'customers#show'
+    patch 'customers/information' => "customers#update"
+    get 'customers/confirm' => "customers#confirm"
+    patch 'costomers/out' => "customers#out"
+    delete 'cart_items/destroy_all' => "cart_items#destroy_all"
+    post 'orders/confirm' => "orders/confirm"
+    get 'orders/thanx' => "orders#thanx"
     get 'addresses/index'
     get 'addresses/edit'
     post 'addresses/create'

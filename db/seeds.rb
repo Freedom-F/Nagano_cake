@@ -5,3 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+# ジャンルを作成
+genre = Genre.create!(
+  name: "ケーキ"
+)
+
+item = Item.create!(
+  genre_id: genre.id,
+  name: "チーズケーキ",
+  tax_excluded_price: 400,
+  explanation: "濃厚チーズ",
+  is_sold_out: false,
+)
+
+# 商品に画像を関連付ける
+item.image.attach(io: File.open('app/assets/images/cake.jpg'), filename: 'cake.jpg')
