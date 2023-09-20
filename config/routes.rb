@@ -20,7 +20,7 @@ namespace :public do
   #顧客
     root to: 'homes#top'
     get 'home/about' => "homes#about", as:"about"
-    get 'customers/mypage' => "customers#show"
+    get'customers/mypage', :to =>'customers#show'
     patch 'customers/information' => "customers#update"
     get 'customers/confirm' => "customers#confirm"
     patch 'costomers/out' => "customers#out"
