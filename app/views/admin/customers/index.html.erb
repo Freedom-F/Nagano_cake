@@ -23,8 +23,8 @@
               </td>
               <td><%= customer.email %></td>
               
-              <% delete = Customer.select("is_deleted").find_by(id: customer.id) %>
-              <% if delete.is_deleted %>
+              <% status = Customer.select("is_deleted").find_by(id: customer.id) %>
+              <% if status.is_deleted %>
                 <td class="text-secondary">退会</td>
               <% else %>
                 <td class="text-success">有効</td>
