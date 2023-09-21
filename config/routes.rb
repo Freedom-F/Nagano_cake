@@ -38,7 +38,6 @@ namespace :public do
     post 'cart_items/create'
     resources :items, only: [:index, :show]
     get 'information/edit', to: 'customers#edit', as: 'edit_information'
-    end
   end
 
 #管理者
