@@ -23,4 +23,9 @@ class CartItem < ApplicationRecord
   def total_price
     items.sum("quantity*price")
   end
+
+  def subtotal
+    item.tax_excluded_price * amount
+  end
+
 end

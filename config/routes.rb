@@ -38,7 +38,7 @@ namespace :public do
     get 'orders/show'
     get 'cart_items/index'
     patch 'cart_items/update'
-    delete 'cart_items/destroy'
+    delete 'cart_items/:id' => "cart_items#destroy"
     post 'cart_items/create'
     get 'items/index'
     get 'items/:id' => "items#show"
