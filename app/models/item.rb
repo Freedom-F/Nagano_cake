@@ -23,5 +23,6 @@ class Item < ApplicationRecord
     image.variant(resize_to_limit: [100, 100]).processed
  end
 
+ scope :new_arrivals, -> { where(is_new: true).order(created_at: :desc) }
 
 end

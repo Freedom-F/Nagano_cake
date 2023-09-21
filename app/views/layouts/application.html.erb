@@ -26,7 +26,7 @@
               <%= link_to "マイページ", customer_session_path %>
             </li>
             <li class="nav-item">
-              <%= link_to "商品一覧", public_items_index_path %>
+              <%= link_to "商品一覧", public_items_path %>
             </li>
             <li class="nav-item">
               <%= link_to "カート", public_cart_items_index_path %>
@@ -39,7 +39,7 @@
               <%= link_to "About", public_about_path %>
             </li>
             <li class="nav-item">
-              <%= link_to "商品一覧", public_items_index_path %>
+              <%= link_to "商品一覧", public_items_path %>
             </li>
             <li class="nav-item">
               <%= link_to "新規登録", new_customer_registration_path %>
@@ -57,5 +57,8 @@
 
 
     <%= yield %>
+    <footer>
+   </footer>
   </body>
+
 </html>

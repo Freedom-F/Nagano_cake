@@ -37,12 +37,11 @@ namespace :public do
     get 'orders/index'
     get 'orders/show'
     get 'cart_items/index'
-    patch 'cart_items/update'
+    patch 'cart_items/:id' => "cart_items#update"
     delete 'cart_items/:id' => "cart_items#destroy"
     post 'cart_items/create'
-    get 'items/index'
-    get 'items/:id' => "items#show"
-     resources :customers do
+    resources :items, only: [:index, :show]
+    resources :customers do
     get 'information/edit', to: 'customers#edit', on: :member, as: 'edit_information'
     end
   end
