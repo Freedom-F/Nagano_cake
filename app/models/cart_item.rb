@@ -1,7 +1,6 @@
 class CartItem < ApplicationRecord
-  has_many :items, dependent: :destroy
-  belongs_to :customer
-  
+  belongs_to :item
+
   #    カートアイテムの追加
   def add_item(product_id:, quantity:)
     # カートに入っていない商品を追加する場合はItemレコードを新規作成
@@ -24,4 +23,9 @@ class CartItem < ApplicationRecord
   def total_price
     items.sum("quantity*price")
   end
+
+  def subtotal
+    item.tax_excluded_price * amount
+  end
+
 end

@@ -1,1 +1,29 @@
-top
+<div class="text-center">
+  <h3>ようこそ、ながのCAKEへ！<br>
+      このサイトは、ケーキ販売のESサイトになります。<br>
+      会員でない方も商品の閲覧はできますが、<br>
+      購入には会員登録が必要になります。</h3>
+</div>
+
+<div class="container">
+  <div class="row">
+
+<h3>新着商品</h3>
+</div>
+ <div class="row">
+
+   <% if @new_items.present? %>
+    <div class="row">
+    <% @new_items.each do |item| %>
+      <%= link_to public_path(item) do %>
+        <%= image_tag item.get_image %>
+      <% end %>
+    <% end %>
+  </div>
+<% else %>
+  <p>新着商品はありません。</p>
+<% end %>
+</div>
+    </div>
+
+<%= link_to "すべての商品をみる>", public_items_path %>

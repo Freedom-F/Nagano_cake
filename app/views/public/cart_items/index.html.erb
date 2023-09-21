@@ -1,0 +1,47 @@
+<h1>ショッピングカート</h1>
+
+<div class="actions">
+  <%= link_to "カートを空にする", public_cart_items_destroy_all_path, method: :delete %>
+</div>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価（税込）</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+   <tbody>
+  <% @cart_items.each do |cart_item| %>
+    <tr>
+      <td><%= image_tag cart_item.item.get_image %>
+        <%= cart_item.item.name %></td>
+      <td><%= number_to_currency(cart_item.item.tax_excluded_price) %></td>
+      <td>
+          <%= form_with(model: cart_item, url: public_path(cart_item), method: :patch) do |form| %>
+            <%= form.number_field :amount, min: 1, value: cart_item.amount %>
+            <%= form.submit "変更" %>
+          <% end %>
+        </td>
+
+      <td><%= number_to_currency(cart_item.item.tax_excluded_price * cart_item.amount) %></td>
+
+      <td><%= link_to "削除", public_path(cart_item), method: :delete %></td>
+    </tr>
+  <% end %>
+</tbody>
+  </tbody>
+</table>
+
+<div class="total">
+  合計金額: <%= number_to_currency(@total_price) %>
+</div>
+
+<div class="actions">
+  <%= link_to "買い物を続ける", public_items_path %>
+  <%= link_to "情報入力に進む", public_orders_new_path %>
+</div>

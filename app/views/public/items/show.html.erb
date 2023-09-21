@@ -1,1 +1,24 @@
-<
+<h1>商品詳細</h1>
+<div class="item-details">
+  <div class="item-image">
+    <%= image_tag @item.get_image %>
+  </div>
+  <div class="item-form">
+    <h2><%= @item.name %></h2>
+    <p><%= @item.explanation %></p>
+    <p>税込価格: <%= number_to_currency(@item.tax_excluded_price) %></p>
+
+    <% if current_customer %>
+      <%= form_with(model: @cart_item, url: public_cart_items_create_path, method: :post) do |form| %>
+        <div class="field">
+          <%= form.label :amount, "個数選択" %>
+          <%= form.number_field :amount, min: 1 %>
+        </div>
+        <%= form.hidden_field :item_id, value: @item.id %>
+        <%= form.submit "カートに追加" %>
+      <% end %>
+    <% else %>
+      <p>ログインしていないとカートに追加できません。</p>
+    <% end %>
+  </div>
+</div>
