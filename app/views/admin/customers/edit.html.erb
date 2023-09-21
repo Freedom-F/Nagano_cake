@@ -34,7 +34,19 @@
         </div>
         <div class="form-group row">
           <label for="inputEmail" class="col-2 mr-4 col-form-label">メールアドレス</label>
-          <%= f.text_field :email, class: "col-3 form-control", id: "inputEmail" %>
+          <%= f.email_field :email, class: "col-3 form-control", id: "inputEmail" %>
+        </div>
+        
+        <div class="form-group row">
+          <label for="staticLabel" class="col-2 mr-4 col-form-label">会員ステータス</label>
+          <div class="form-group row">
+          <%= f.radio_button :is_deleted, false, class: "col-3 form-control" %>
+          <%= f.label :is_deleted, '有効', value: false, class: "col-form-label" %>
+        </div>
+        </div>
+        
+        <div class="form-group offset-2">
+          <%= f.submit "  変更を保存  ", class: "mt-4 ml-3 btn btn-success" %>
         </div>
       <% end %>
     </div>
