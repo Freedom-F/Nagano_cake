@@ -26,22 +26,18 @@ namespace :public do
     delete 'cart_items/destroy_all' => "cart_items#destroy_all"
     post 'orders/confirm' => "orders#confirm"
     get 'orders/thanx' => "orders#thanx"
-    #get 'addresses/index'
-    #get 'addresses/:id/edit' => "addresses#edit"
-    #post 'addresses/create'
-    #patch 'addresses/update'
-    #delete 'addresses/:id/destroy' => "addresses#destroy"
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     get 'orders/new'
     post 'orders/create'
     get 'orders/index'
     get 'orders/show'
     get 'cart_items/index'
-    patch 'cart_items/update'
+    patch 'cart_items/:id/update' => "cart_items#update"
     delete 'cart_items/destroy'
     post 'cart_items/create'
     get 'items/index'
     get 'items/show'
+    resources :items, only: [:index, :show]
     get 'information/edit', to: 'customers#edit', as: 'edit_information'
   end
 
