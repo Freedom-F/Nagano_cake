@@ -1,6 +1,7 @@
 class CartItem < ApplicationRecord
   has_many :items, dependent: :destroy
-
+  belongs_to :customer
+  
   #    カートアイテムの追加
   def add_item(product_id:, quantity:)
     # カートに入っていない商品を追加する場合はItemレコードを新規作成
