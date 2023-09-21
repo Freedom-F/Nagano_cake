@@ -27,11 +27,7 @@ namespace :public do
     delete 'cart_items/destroy_all' => "cart_items#destroy_all"
     post 'orders/confirm' => "orders/confirm"
     get 'orders/thanx' => "orders#thanx"
-    get 'addresses/index'
-    get 'addresses/edit'
-    post 'addresses/create'
-    patch 'addresses/update'
-    delete 'addresses/destroy'
+    resources :addresses,[:index, :edit, :create, :update,:destroy]
     get 'orders/new'
     post 'orders/create'
     get 'orders/index'
