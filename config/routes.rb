@@ -14,7 +14,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-
+    
 #顧客
 root to: 'public/homes#top'
 namespace :public do
@@ -25,9 +25,9 @@ namespace :public do
     get 'customers/confirm' => "customers#confirm"
     patch 'costomers/out' => "customers#out"
     delete 'cart_items/destroy_all' => "cart_items#destroy_all"
-    post 'orders/confirm' => "orders/confirm"
+    post 'orders/confirm' => "orders#confirm"
     get 'orders/thanx' => "orders#thanx"
-    resources :addresses,[:index, :edit, :create, :update,:destroy]
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     get 'orders/new'
     post 'orders/create'
     get 'orders/index'
@@ -37,8 +37,7 @@ namespace :public do
     delete 'cart_items/:id' => "cart_items#destroy"
     post 'cart_items/create'
     resources :items, only: [:index, :show]
-    resources :customers do
-    get 'information/edit', to: 'customers#edit', on: :member, as: 'edit_information'
+    get 'information/edit', to: 'customers#edit', as: 'edit_information'
     end
   end
 
@@ -47,10 +46,7 @@ namespace :admin do
 
     root to: "homes#top"
     resources :orders, only: [:show, :update]
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-    patch 'customers/update'
+    resources :customers, only: [:index, :show, :edit, :update]
     resources :genres, only: [:index, :edit, :create, :update]
     resources :items, only: [:index, :create, :new, :show, :edit, :update]
 

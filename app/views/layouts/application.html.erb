@@ -23,7 +23,7 @@
         <ul class="navbar-nav ml-auto">
           <% if customer_signed_in? %>
             <li class="nav-item">
-              <%= link_to "マイページ", customer_session_path %>
+              <%= link_to "マイページ", public_customers_mypage_path %>
             </li>
             <li class="nav-item">
               <%= link_to "商品一覧", public_items_path %>
