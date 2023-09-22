@@ -1,14 +1,15 @@
-<div class="container" >
-  
+<div class="container py-5">
   <div class="row mt-2 mb-3 offset-1 text-center">
-    <h1>マイページ</h1>
+    <h3 class="px-4 title-background">マイページ</h3>
   </div>
-  
-    <div class="row">
+  <div class="row">
     <div class="col-10 mx-auto">
-      <div class="col-md-2 mb-2"><h3>登録情報</h3></div>
-      <div class="col-md-2 mb-2"><%= link_to "編集する", edit_information_public_customer_path %></div>
-      
+      <div class="row mb-2">
+        <h3 class="col-2">登録情報</h3>
+        <p>
+          <%= link_to "編集する", public_edit_information_path, class: "btn btn-success ml-5 pl-5 pr-5" %>
+        </p>
+      </div>
       <table class="table table-list">
         <tr>
           <td>氏名</td>
@@ -24,22 +25,29 @@
         </tr>
         <tr>
           <td>住所</td>
-          <td><%= @customer.addresses %></td>
+          <td><%= @customer.address %></td>
         </tr>
         <tr>
           <td>電話番号</td>
           <td><%= @customer.phone_number %></td>
         </tr>
         <tr>
-          <td>メールアドレス</td>
+          <td class="title-background">メールアドレス</td>
           <td><%= @customer.email %></td>
         </tr>
       </table>
-      
-      <div><h4>配送先</h4></div>
-      <div><%= link_to "一覧を見る", public_addresses_index_path %></div>
-      
-      <div><h4>注文履歴</h4></div>
-      <div><%= link_to "一覧を見る", public_orders_show_path %></div>
-      
+
+      <div class="row">
+      <h5 class="col-3">配送先</h5>
+      <%= link_to "一覧を見る", public_addresses_path, :class => "btn btn-primary mr-5" %>
+      </div><br>
+
+      <div class="row">
+      <h5 class="col-3">注文履歴</h5>
+      <%= link_to "一覧を見る", public_orders_index_path, :class => "btn btn-primary mr-5" %>
+      </div>
+
+      </div>
+    </div>
+  </div>
 </div>

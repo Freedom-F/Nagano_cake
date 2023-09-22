@@ -23,4 +23,4 @@ item = Item.create!(
 )
 
 # 商品に画像を関連付ける
-item.image.attach(io: File.open('app/assets/images/cake.jpg'), filename: 'cake.jpg')
+item.image.attach(io: File.open('app/assets/images/cake.jpeg'), filename: 'cake.jpeg')
