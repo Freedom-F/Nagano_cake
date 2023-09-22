@@ -1,24 +1,62 @@
-<div class="container mt-5 mb-5">
-	<div class="row text-center text-xs-center text-sm-left text-md-left ">
-    <div class="col-xs-12 col-sm-6 col-md-6 mx-auto text-right">
+<div class="container h-100">
+	<div class="row">
+    <div class="col-md-4 mx-auto">
+      <div class="mb-4"></div>
       <h2>商品詳細</h2>
     <% if @item.image.attached? %>
   　　<%= image_tag @item.image %>
 　　<% else %>
   　　<%= image_tag 'no_image.jpeg' %>
 　　<% end %>
-     
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-6 item-details mx-auto">
-      <h2><strong><%= @item.name %></strong></h2>
-      <h4><%= simple_format(@item.explanation)%></h4>
+　　</div>
+
+
+    <div class="col-md-8 mx-auto">
+      <div class="mb-4"></div>
+      <table>
+
+      <tr>
+      <th>商品名</th>
+      <th><strong><%= @item.name %></strong></th>
+      </tr>
+
+      <tr>
+      <th>商品説明</th>
+      <th><%= simple_format(@item.explanation)%></th>
+      </tr>
+
+
+      <tr>
+      <th>税込価格
+      <br>（税抜価格）</br>
+      </th>
+      <th><%= @item.add_tax_excluded_price.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\1,').reverse %>
+          (<%= @item.tax_excluded_price.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\1,').reverse %>)
+          円
+      </th>
+      </tr>
+
+
+      <tr>
+        <th>販売ステータス</th>
       <%  if @item.is_sold_out == true %>
-        <p class="text-success">販売中</p>
-        <h3> <%= number_to_currency(@item.tax_excluded_price, unit: "¥", format: "%u %n" ) %> (税込)</h3>
+        <th class="text-success">販売中</th>
       <% else %>
-        <h3 class="text-danger">販売停止中です</h3>
+        <th class="text-danger">販売停止中です</th>
       <% end %>
-      <%= link_to "編集する", edit_admin_item_path, class:"btn btn-success" %>
-      </div> 
+      </tr>
+
+      <tr>
+
+      <th>　　</th>
+      <th><%= link_to "　編集する　", edit_admin_item_path, class:"btn btn-success" %></th>
+
+      </tr>
+
+      </table>
+    </div>
+
+
+
   </div>
 </div>

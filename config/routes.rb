@@ -16,10 +16,11 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
     
 #顧客
-root to: 'public/homes#top'
-namespace :public do
-
+    root to: 'public/homes#top'
     get 'homes/about', to: 'homes#about', as: 'about'
+
+    namespace :public do
+
     get'customers/mypage', :to =>'customers#show'
     patch 'customers/information' => "customers#update"
     get 'customers/confirm' => "customers#confirm"

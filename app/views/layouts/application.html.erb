@@ -8,20 +8,50 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="https://kit.fontawesome.com/82d7b2075d.js" crossorigin="anonymous"></script>
+    
   </head>
 
   <body class="d-flex flex-column vh-100">
-    <header class="shadow-sm">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <header>
+      <nav>
     <div class="container">
       <a class="navbar-brand" href="/">logo</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <% if customer_signed_in? %>
+      
+       
+      
+      
+        <ul>
+          
+            <!--adminログイン時のヘッダー-->
+            <% if admin_signed_in? %>
+              <li class="nav-item">
+                <%= link_to admin_items_path do %>
+                  <i class="fas fa-cookie-bite">商品一覧</i>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to admin_customers_path do %>
+                  <i class="fas fa-users">会員一覧</i>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to admin_root_path do %>
+                  <i class="fas fa-clipboard-list">注文履歴一覧</i>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to admin_genres_path do%>
+                  <i class="fas fa-tags">ジャンル一覧</i>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_admin_session_path, method: :delete do %>
+                  <i class="fas fa-sign-out-alt">ログアウト</i>
+                <% end %>
+              </li>
+          
+          <% elsif customer_signed_in? %>
             <li class="nav-item">
               <%= link_to "マイページ", public_customers_mypage_path %>
             </li>
@@ -54,7 +84,15 @@
   </nav>
     </header>
 
-
+    <div class="container">
+  		 <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+        <% flash.each do |key, value| %>
+          <p class="alert alert-<%= key %>">
+            <%= sanitize value, tags: %w(br) %>
+          </p>
+        <% end %>
+       </div>
+    </div>
 
     <%= yield %>
     <footer>
