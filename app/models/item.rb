@@ -14,4 +14,8 @@ class Item < ApplicationRecord
   validates :genre, presence: true
   validates :tax_excluded_price, presence: true, numericality: { only_integer: true, greater_than: 0}
 
+  def add_tax_excluded_price
+    (self.tax_excluded_price * 1.10).round
+  end
+
 end
