@@ -2,14 +2,14 @@
 <html>
   <head>
     <title>NaganoCake</title>
-
+　　 <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/82d7b2075d.js" crossorigin="anonymous"></script>
-    
+
   </head>
 
   <body class="d-flex flex-column vh-100">
@@ -17,12 +17,9 @@
       <nav>
     <div class="container">
       <a class="navbar-brand" href="/">logo</a>
-      
-       
-      
-      
-        <ul>
-          
+    <div class="row">
+       <ul class="navbar-nav ml-auto">
+
             <!--adminログイン時のヘッダー-->
             <% if admin_signed_in? %>
               <li class="nav-item">
@@ -50,7 +47,7 @@
                   <i class="fas fa-sign-out-alt">ログアウト</i>
                 <% end %>
               </li>
-          
+
           <% elsif customer_signed_in? %>
             <li class="nav-item">
               <%= link_to "マイページ", public_customers_mypage_path %>
@@ -66,7 +63,7 @@
             </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to "About", public_about_path %>
+              <%= link_to "About", about_path %>
             </li>
             <li class="nav-item">
               <%= link_to "商品一覧", public_items_path %>
@@ -78,8 +75,8 @@
               <%= link_to "ログイン", new_customer_session_path %>
             </li>
           <% end %>
-        </ul>
       </div>
+      </ul>
     </div>
   </nav>
     </header>

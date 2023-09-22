@@ -14,7 +14,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-    
+
 #顧客
     root to: 'public/homes#top'
     get 'homes/about', to: 'homes#about', as: 'about'
@@ -39,6 +39,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     post 'cart_items/create'
     resources :items, only: [:index, :show]
     get 'information/edit', to: 'customers#edit', as: 'edit_information'
+    get 'genre_search', to: 'searches#genre_search', as: 'genre_search'
   end
 
 #管理者
