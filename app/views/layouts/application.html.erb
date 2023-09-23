@@ -14,10 +14,9 @@
 
   <body class="d-flex flex-column vh-100">
     <header>
-      <nav>
-    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="/">logo</a>
-    <div class="row">
+      <div class="collapse navbar-collapse" id="navbarNav">
        <ul class="navbar-nav ml-auto">
 
             <!--adminログイン時のヘッダー-->
@@ -63,7 +62,7 @@
             </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to "About", about_path %>
+              <%= link_to "About", public_about_path %>
             </li>
             <li class="nav-item">
               <%= link_to "商品一覧", public_items_path %>
@@ -75,7 +74,6 @@
               <%= link_to "ログイン", new_customer_session_path %>
             </li>
           <% end %>
-      </div>
       </ul>
     </div>
   </nav>

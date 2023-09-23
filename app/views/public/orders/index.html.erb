@@ -1,3 +1,25 @@
 <div>
     <h3>注文履歴一覧</h3>
+      <table class="table table-bordered">
+       <thead>
+        <tr>
+          <th>注文日</th>
+          <th>配送先</th>
+          <th>支払い金額</th>
+          <th>ステータス</th>
+          <th>詳細</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.order_date %></td>
+            <td><%= order.shipping_address %></td>
+            <td><%= order.payment_amount %></td>
+            <td><%= order.status %></td>
+            <td><%= link_to '詳細', public_orders_show_path(order) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+</table>
 </div>

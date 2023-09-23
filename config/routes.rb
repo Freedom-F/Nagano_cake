@@ -17,10 +17,10 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
 #顧客
     root to: 'public/homes#top'
-    get 'homes/about', to: 'homes#about', as: 'about'
+    get 'public/genre_search(/:id)', to: 'searches#genre_search', as: 'public_genre_search'
+    get '/homes/about', to: 'public/homes#about', as: 'public_about'
 
     namespace :public do
-
     get'customers/mypage', :to =>'customers#show'
     patch 'customers/information' => "customers#update"
     get 'customers/confirm' => "customers#confirm"
@@ -39,7 +39,6 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     post 'cart_items/create'
     resources :items, only: [:index, :show]
     get 'information/edit', to: 'customers#edit', as: 'edit_information'
-    get 'genre_search', to: 'searches#genre_search', as: 'genre_search'
   end
 
 #管理者
