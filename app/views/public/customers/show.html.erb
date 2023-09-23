@@ -1,6 +1,6 @@
 <div class="container py-5">
   <div class="row mt-2 mb-3 offset-1 text-center">
-    <h3 class="px-4 title-background">マイページ</h3>
+    <h3 class="px-4 title">マイページ</h3>
   </div>
   <div class="row">
     <div class="col-10 mx-auto">
@@ -10,29 +10,29 @@
           <%= link_to "編集する", public_edit_information_path, class: "btn btn-success ml-5 pl-5 pr-5" %>
         </p>
       </div>
-      <table class="table table-list">
+      <table class="table table-bordered">
         <tr>
-          <td>氏名</td>
+          <td class="table-secondary">氏名</td>
           <td><%= @customer.last_name + @customer.first_name %></td>
         </tr>
         <tr>
-          <td>カナ</td>
+          <td class="table-secondary">カナ</td>
           <td><%= @customer.last_name_kana + @customer.first_name_kana %></td>
         </tr>
         <tr>
-          <td>郵便番号</td>
+          <td class="table-secondary">郵便番号</td>
           <td><%= @customer.post_code %></td>
         </tr>
         <tr>
-          <td>住所</td>
+          <td class="table-secondary">住所</td>
           <td><%= @customer.address %></td>
         </tr>
         <tr>
-          <td>電話番号</td>
+          <td class="table-secondary">電話番号</td>
           <td><%= @customer.phone_number %></td>
         </tr>
         <tr>
-          <td class="title-background">メールアドレス</td>
+          <td  class="table-secondary">メールアドレス</td>
           <td><%= @customer.email %></td>
         </tr>
       </table>
