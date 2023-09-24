@@ -4,7 +4,7 @@
       <h3 class="mb-5 mt-5 address-title">配送先登録/一覧</h3>
 
       <div class="mb-5 address-container">
-        <%= form_with model: @address, url:public_addresses_path, class: 'address-box' do |f| %>
+        <%= form_with model: @address, url:addresses_path, class: 'address-box' do |f| %>
           <div class="row mt-3 address-box">
             <div class="col-3 address-label">郵便番号(ハイフンなし)</div>
             <div class="col-3 address-from">
@@ -51,8 +51,8 @@
             <td><%= address.address %></td>
             <td class="text-nowrap"><%= address.name %></td>
             <td>
-             <%= link_to "編集する", edit_public_address_path(address), class: "btn btn-success mr-1 address-btn" %>
-             <%= link_to "削除する", public_address_path(address), method: :delete, "data-cofirm" => "本当に削除しますか？", class: "btn btn-danger mr-1 address-btn" %>
+             <%= link_to "編集する", edit_address_path(address), class: "btn btn-success mr-1 address-btn" %>
+             <%= link_to "削除する", address_path(address), method: :delete, "data-cofirm" => "本当に削除しますか？", class: "btn btn-danger mr-1 address-btn" %>
             </td>
           </tr>
           <% end %>
