@@ -22,12 +22,16 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
     scope module: :public do
     get'customers/mypage', :to =>'customers#show'
+    get 'information/edit', to: 'customers#edit', as: 'edit_information'
     patch 'customers/information' => "customers#update"
     get 'customers/confirm' => "customers#confirm"
     patch 'costomers/out' => "customers#out"
-    delete 'cart_items/destroy_all' => "cart_items#destroy_all"
+    resources :items, only: [:index, :show]
+    resources :orders, only: [:new, :create, :show, :index]
     post 'orders/confirm' => "orders#confirm"
     get 'orders/thanx' => "orders#thanx"
+    resources :cart_items, only: [:index, :create, :destroy, :update]
+    delete 'cart_items/destroy_all' => "cart_items#destroy_all"
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     get 'orders/new'
     post 'orders/create'
@@ -37,6 +41,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     resources :items, only: [:index, :show]
     get 'information/edit', to: 'customers#edit', as: 'edit_information'
   end
+
 
 #管理者
 namespace :admin do

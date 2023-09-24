@@ -5,7 +5,7 @@
 　　 <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/82d7b2075d.js" crossorigin="anonymous"></script>
@@ -18,6 +18,7 @@
       <a class="navbar-brand" href="/">logo</a>
       <div class="collapse navbar-collapse" id="navbarNav">
        <ul class="navbar-nav ml-auto">
+
 
             <!--adminログイン時のヘッダー-->
             <% if admin_signed_in? %>
@@ -89,6 +90,7 @@
        </div>
     </div>
 
+</div>
     <%= yield %>
     <footer>
    </footer>
