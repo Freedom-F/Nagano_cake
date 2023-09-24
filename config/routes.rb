@@ -14,13 +14,13 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-    
+
 #顧客
     root to: 'public/homes#top'
+    get 'public/genre_search(/:id)', to: 'searches#genre_search', as: 'public_genre_search'
+    get '/homes/about', to: 'public/homes#about', as: 'public_about'
 
     scope module: :public do
-
-    get 'homes/about', to: 'homes#about', as: 'about'
     get'customers/mypage', :to =>'customers#show'
     get 'information/edit', to: 'customers#edit', as: 'edit_information'
     patch 'customers/information' => "customers#update"
@@ -33,6 +33,13 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     resources :cart_items, only: [:index, :create, :destroy, :update]
     delete 'cart_items/destroy_all' => "cart_items#destroy_all"
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+    get 'orders/new'
+    post 'orders/create'
+    get 'orders/index'
+    get 'orders/show'
+    resources :cart_items, only: [:index, :create, :update, :destroy]
+    resources :items, only: [:index, :show]
+    get 'information/edit', to: 'customers#edit', as: 'edit_information'
   end
 
 

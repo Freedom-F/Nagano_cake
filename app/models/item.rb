@@ -29,6 +29,6 @@ class Item < ApplicationRecord
  end
 
  scope :new_arrivals, -> { where(is_new: true).order(created_at: :desc) }
-
+ paginates_per 8
 
 end
