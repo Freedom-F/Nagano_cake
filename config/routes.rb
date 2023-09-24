@@ -19,6 +19,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     root to: 'public/homes#top'
     get 'public/genre_search(/:id)', to: 'searches#genre_search', as: 'public_genre_search'
     get '/homes/about', to: 'public/homes#about', as: 'public_about'
+    post '/cart_items/add_to_cart', to: 'public/cart_items#add_to_cart', as: 'add_to_cart'
 
     scope module: :public do
     get'customers/mypage', :to =>'customers#show'
@@ -39,7 +40,6 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     get 'orders/show'
     resources :cart_items, only: [:index, :create, :update, :destroy]
     resources :items, only: [:index, :show]
-    get 'information/edit', to: 'customers#edit', as: 'edit_information'
   end
 
 
