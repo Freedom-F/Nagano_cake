@@ -39,7 +39,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     get 'orders/show'
     resources :cart_items, only: [:index, :create, :update, :destroy]
     resources :items, only: [:index, :show]
-    get 'information/edit', to: 'customers#edit', as: 'edit_information'
+    # get 'information/edit', to: 'customers#edit', as: 'edit_information'
   end
 
 
@@ -48,6 +48,7 @@ namespace :admin do
 
     root to: "homes#top"
     resources :orders, only: [:show, :update]
+    resources :order_details, only: [:update]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :genres, only: [:index, :edit, :create, :update]
     resources :items, only: [:index, :create, :new, :show, :edit, :update]
