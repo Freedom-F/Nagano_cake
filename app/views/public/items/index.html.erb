@@ -9,7 +9,7 @@
 
           <% Item.all.each do |item| %>
               <div class="col-3">
-            <%= link_to public_item_path(item) do %>
+            <%= link_to item_path(item) do %>
               <%= image_tag item.get_image %>
             <% end %>
             <h2><%= item.name %></h2>

@@ -9,7 +9,7 @@
     <p>税込価格: <%= number_to_currency(@item.tax_excluded_price) %></p>
 
     <% if current_customer %>
-      <%= form_with(model: @cart_item, url: public_cart_items_create_path, method: :post) do |form| %>
+      <%= form_with(model: @cart_item, url: cart_items_path, method: :post) do |form| %>
         <div class="field">
           <%= form.label :amount, "個数選択" %>
           <%= form.number_field :amount, min: 1 %>

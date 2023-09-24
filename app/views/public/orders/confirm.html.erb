@@ -18,9 +18,9 @@
                    <%= image_tag cart_item.item.get_image %>
                    <%= cart_item.item.name %>
            　     </th>
-                 <th><%= cart_item.item.add_tax_excluded_price.to_i %></th>
-                 <th><%= cart_item.amount %></th>
-                 <th><%= subtotal = (cart_item.item.add_tax_excluded_price. * cart_item.amount).to_i %></th>
+                 <th><%= cart_item.item.add_tax_excluded_price.to_i %>円</th>
+                 <th><%= cart_item.amount %>個</th>
+                 <th><%= subtotal = (cart_item.item.add_tax_excluded_price. * cart_item.amount).to_i %>円</th>
                  <% @total +=subtotal %>
                </tr>
               <% end %>
@@ -30,15 +30,15 @@
           <table class="table table-bordered">
             <tr>
               <td class="table-secondary">送料</td>
-              <td>800</td>
+              <td>800円</td>
             </tr>
             <tr>
               <td class="table-secondary">商品合計</td>
-              <td><%= @total %></td>
+              <td><%= @total %>円</td>
             </tr>
             <tr>
               <td class="table-secondary">請求額</td>
-              <td><%= @total+800 %></td>
+              <td><%= @total+800 %>円</td>
             </tr>
           </table>
         </div>
@@ -60,22 +60,15 @@
           </div>
         </div>
         <div class="text-center mb-4">
-          
-          <%= form_with url: public_orders_confirm_path, method: :post do %>
-        
-            <%= hidden_field_tag 'order[pay_method]', @selected_pay_method %>
-            <%= hidden_field_tag 'order[address_type]', @address_type %>
-            <% if @address_type == "registered_address" %>
-              <%= hidden_field_tag 'order[registered_address_id]', params[:order][:registered_address_id] %>
-            <% elsif @address_type == "new_address" %>
-              <%= hidden_field_tag 'order[new_post_code]', params[:order][:new_post_code] %>
-              <%= hidden_field_tag 'order[new_address]', params[:order][:new_address] %>
-              <%= hidden_field_tag 'order[new_name]', params[:order][:new_name] %>
-            <% end %>
-            <%= submit_tag "注文を確定する", class: "btn btn-success" %>
+          <%= form_with model: @order, url: orders_path, method: :post do |f| %>
+            <%= f.hidden_field :payment_method, :value => @order.payment_method %>
+              <%= f.hidden_field :post_code, :value => @order.post_code %>
+              <%= f.hidden_field :address, :value => @order.address %>
+              <%= f.hidden_field :name, :value => @order.name %>
+              <%= f.hidden_field :total_amount, :value => @total+800 %>
+            <%= f.submit "注文を確定する", class: "btn btn-success" %>
           <% end %>
         </div>
-      
       </div>
     </div>
 </div>
