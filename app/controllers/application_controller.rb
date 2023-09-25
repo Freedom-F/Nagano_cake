@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    public_customers_mypage_path(current_customer)
+    customers_mypage_path(current_customer)
   end
 
   def after_sign_out_path_for(resource)

@@ -22,8 +22,8 @@ class Public::OrdersController < ApplicationController
       @order.post_code = current_customer.post_code
       @order.name = current_customer.last_name+current_customer.first_name
     else
-     @order.address = params[:order][:post_code]
-     @order.post_code = params[:order][:address]
+     @order.post_code = params[:order][:post_code]
+     @order.address = params[:order][:address]
      @order.name = params[:order][:name]
     end
   end
@@ -49,7 +49,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all
+    @orders = current_customer.orders.page(params[:page]).order(created_at: :desc)
   end
 
   def show
