@@ -41,12 +41,11 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 #管理者
 namespace :admin do
 
-  root to: "homes#top"
-  resources :orders, only: [:show, :update]
-  resources :customers, only: [:index, :show, :edit, :update]
-  resources :genres, only: [:index, :edit, :create, :update]
-  resources :items, only: [:index, :create, :new, :show, :edit, :update]
-
- end
+    root to: "homes#top"
+    resources :orders, only: [:show, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
+    resources :genres, only: [:index, :edit, :create, :update]
+    resources :items, only: [:index, :create, :new, :show, :edit, :update]
+  end
 
 end
