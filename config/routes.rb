@@ -36,6 +36,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
  end
 
 
+
 #管理者
 namespace :admin do
 
