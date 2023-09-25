@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
               <%= form.hidden_field :item_id, value: @item.id %>
-              <%= link_to 'カートに追加', add_to_cart_path(item_id: @item.id), method: :post %>
+              <%= form.submit 'カートに追加' %>
             </div>
           <% end %>
         <% else %>

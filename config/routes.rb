@@ -19,7 +19,6 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   root to: 'public/homes#top'
   get 'public/genre_search(/:id)', to: 'searches#genre_search', as: 'public_genre_search'
   get '/homes/about', to: 'public/homes#about', as: 'public_about'
-  post '/cart_items/add_to_cart', to: 'public/cart_items#add_to_cart', as: 'add_to_cart'
 
   scope module: :public do
   get'customers/mypage', :to =>'customers#show'
@@ -30,8 +29,8 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   get 'orders/thanx' => "orders#thanx"
   resources :orders, only: [:new, :create, :show, :index]
   post 'orders/confirm' => "orders#confirm"
-  resources :cart_items, only: [:index, :create, :destroy, :update]
   delete 'cart_items/destroy_all' => "cart_items#destroy_all"
+  resources :cart_items, only: [:index, :create, :destroy, :update]
   resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   resources :items, only: [:index, :show]
  end
