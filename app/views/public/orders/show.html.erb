@@ -1,3 +1,71 @@
-<div>
-    <h3>注文履歴詳細</h3>
-</div>
+<div class="container mt-5 mb-5">
+  <div class="row mt-2 mb-3 offset-1 text-center">
+    <h3 class="px-4 title-background">注文履歴詳細</h3>
+  </div>
+    <h4>注文情報</h4>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-8">
+          <table class="table table-bordered">
+            <tr>
+              <td class="table-secondary">注文日</td>
+              <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+            </tr>
+            <tr>
+              <td class="table-secondary">配送先</td>
+              <td>
+                <%= "〒#{@order.post_code} #{@order.address}" %><br>
+                <%= "#{@order.name}" %>
+              </td>
+            </tr>
+            <tr>
+              <td class="table-secondary">支払い方法</td>
+              <td><%= @order.payment_method_i18n %></td>
+            </tr>
+            <tr>
+              <td class="table-secondary">ステータス</td>
+              <td><%= @order.status_i18n %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+      <h4>請求情報</h4>
+    <div class="col-12 col-md-4">
+      <table class="table table-bordered">
+        <tr>
+          <td class="table-secondary">商品合計</td>
+          <td><%= @order.total_amount-@order.postage %>円</td>
+        </tr>
+        <tr>
+          <td class="table-secondary">送料</td>
+          <td><%= @order.postage %></td>
+        </tr>
+        <tr>
+          <td class="table-secondary">ご請求額</td>
+          <td><%= @order.total_amount.to_i %>円</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="col-md-8 mb-3">
+      <h4>注文内容</h4>
+      <table class="table table-bordered">
+          <tr class="table-secondary">
+            <td>商品</td>
+            <td>単価(税込)</td>
+            <td>個数</td>
+            <td>小計</td>
+          </tr>
+        <% @order_details.each do |order_detail| %>
+          <tr>
+            <td><%= order_detail.item.name %></td>
+            <td><%= order_detail.price_will_change! %></td>
+            <td><%= order_detail.amount %></td>
+            <td><%= order_detail.subtotal %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+</div><

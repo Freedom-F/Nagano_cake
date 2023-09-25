@@ -1,12 +1,14 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h2 class="mt-4 mb-3">注文履歴詳細</h2>
+      <h2 class="mb-4">注文履歴詳細</h2>
       
       <table class="table table-borderless">
         <tr>
           <th class="col-2">購入者</th>
-          <td><%= @order.name %></td>
+          <td>
+            <u><%= link_to @order.name, admin_customer_path(@order.customer), class: "text-dark" %></u>
+          </td>
         </tr>
         <tr>
           <th>注文日</th>
@@ -42,49 +44,48 @@
           <th>数量</th>
           <th>小計</th>
           <th>製作ステータス</th>
-          <th></th>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>着手不可</td>
-            <td><%= link_to "更新", admin_root_path, class: "btn btn-sm btn-success" %></td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>着手不可</td>
-            <td><%= link_to "更新", admin_root_path, class: "btn btn-sm btn-success" %></td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>着手不可</td>
-            <td><%= link_to "更新", admin_root_path, class: "btn btn-sm btn-success" %></td>
-          </tr>
+          <% @order_details.each do |detail| %>
+            
+            
+            <tr>
+              <td><%= detail.item.name %></td>
+              <td><%= detail.price.to_s(:delimited) %></td>
+              <td><%= detail.amount %></td>
+              <td><%= (detail.price * detail.amount).to_s(:delimited) %></td>
+              <td>
+                <%= form_with model: detail, url: admin_order_detail_path(detail.id), method: :patch do |f| %>
+                  <%= f.select :making_status, [["着手不可", "not_ready"], ["製作待ち", "wait_production"], ["製作中", "production"], 
+                    ["製作完了", "completed"]], { selected: detail.making_status }, { class: "px-3 text-center" } %>
+                  <%= f.submit "更新", class: "btn btn-sm btn-success ml-4" %>
+                <% end %>
+              </td>
+            </tr>
+            
+          <% end %>
         </tbody>
       </table>
     </div>
-    <div class="col-4 mt-auto mb-3">
+    
+    <div class="col-3 mt-auto mb-3">
+      <!--商品合計-->
+      <% item_total = OrderDetail.item_total(@order_details) %>
+      <!--送料-->
+      <% postage = @order.postage %>
+      
       <table class="ml-4">
         <tr>
           <th>商品合計</th>
-          <td>6490円</td>
+          <td><%= item_total.to_s(:delimited) %>円</td>
         </tr>
         <tr>
           <th>送料</th>
-          <td>800円</td>
+          <td><%= postage.to_s(:delimited) %>円</td>
         </tr>
         <tr>
           <th>請求金額合計　</th>
-          <td>7290円</td>
+          <td><%= (item_total + postage).to_s(:delimited) %>円</td>
         </tr>
       </table>
     </div>
