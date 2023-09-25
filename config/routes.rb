@@ -3,43 +3,40 @@ Rails.application.routes.draw do
  # 顧客用
 # URL /customers/sign_in ...
 devise_for :customers,skip: [:passwords], controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
+ registrations: "public/registrations",
+ sessions: 'public/sessions'
 }
 
 # 管理者用
 # URL /admin/sign_in ...
 devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-  sessions: "admin/sessions"
+ sessions: "admin/sessions"
 }
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+ # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-    
+
 #顧客
-root to: 'public/homes#top'
-namespace :public do
+  root to: 'public/homes#top'
+  get 'public/genre_search(/:id)', to: 'searches#genre_search', as: 'public_genre_search'
+  get '/homes/about', to: 'public/homes#about', as: 'public_about'
+  post '/cart_items/add_to_cart', to: 'public/cart_items#add_to_cart', as: 'add_to_cart'
 
-    get 'homes/about', to: 'homes#about', as: 'about'
-    get'customers/mypage', :to =>'customers#show'
-    patch 'customers/information' => "customers#update"
-    get 'customers/confirm' => "customers#confirm"
-    patch 'costomers/out' => "customers#out"
-    delete 'cart_items/destroy_all' => "cart_items#destroy_all"
-    post 'orders/confirm' => "orders#confirm"
-    get 'orders/thanx' => "orders#thanx"
-    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
-    get 'orders/new'
-    post 'orders/create'
-    get 'orders/index'
-    get 'orders/show'
-    get 'cart_items/index'
-    patch 'cart_items/:id' => "cart_items#update"
-    delete 'cart_items/:id' => "cart_items#destroy"
-    post 'cart_items/create'
-    resources :items, only: [:index, :show]
-    get 'information/edit', to: 'customers#edit', as: 'edit_information'
-    end
-  end
+  scope module: :public do
+  get'customers/mypage', :to =>'customers#show'
+  get 'information/edit', to: 'customers#edit', as: 'edit_information'
+  patch 'customers/information' => "customers#update"
+  get 'customers/confirm' => "customers#confirm"
+  patch 'costomers/out' => "customers#out"
+  get 'orders/thanx' => "orders#thanx"
+  resources :orders, only: [:new, :create, :show, :index]
+  post 'orders/confirm' => "orders#confirm"
+  resources :cart_items, only: [:index, :create, :destroy, :update]
+  delete 'cart_items/destroy_all' => "cart_items#destroy_all"
+  resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+  resources :items, only: [:index, :show]
+ end
+
+
 
 #管理者
 namespace :admin do
@@ -49,7 +46,6 @@ namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]
     resources :genres, only: [:index, :edit, :create, :update]
     resources :items, only: [:index, :create, :new, :show, :edit, :update]
-
   end
 
 end

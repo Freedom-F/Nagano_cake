@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h2 class="mt-4 mb-3">注文履歴一覧</h2>
+      <h2 class="mb-4">注文履歴一覧</h2>
       
       <table class="table table-hover">
         <thead class="thead-light">
@@ -21,7 +21,7 @@
               <% end %>
             </td>
             <td><%= order.customer.last_name + order.customer.first_name %></td>
-            <td><%= order.order_details.count %></td>
+            <td><%= order.order_details.count.to_s(:delimited) %></td>
             <td><%= order.status_i18n %></td>
           </tr>
         <% end %>

@@ -1,91 +1,91 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h2 class="mt-4 mb-3">注文履歴詳細</h2>
+      <h2 class="mb-4">注文履歴詳細</h2>
       
-      <table>
+      <table class="table table-borderless">
         <tr>
-          <th>購入者</th>
-          <td>山田花子</td>
+          <th class="col-2">購入者</th>
+          <td>
+            <u><%= link_to @order.name, admin_customer_path(@order.customer), class: "text-dark" %></u>
+          </td>
         </tr>
         <tr>
           <th>注文日</th>
-          <td>2019/11/20</td>
+          <td><%= @order.created_at %></td>
         </tr>
         <tr>
           <th>配送先</th>
-          <td>東京都渋谷区</td>
-        </tr>
-        <tr>
-          <th></th>
-          <td>山田花子</td>
+          <td><%= @order.address %></br><%= @order.name %></td>
         </tr>
         <tr>
           <th>支払方法</th>
-          <td>銀行振込</td>
+          <td><%= @order.payment_method_i18n %></td></td>
         </tr>
         <tr>
-          <th>注文ステータス　　</th>
+          <th>注文ステータス</th>
           <td>
-            入金待ち
-            <%= link_to "更新", admin_root_path, method: :patch, class: "btn btn-sm btn-success ml-3" %>
+            <%= form_with model: @order, url: admin_order_path, method: :patch do |f| %>
+              <%= f.select :status, [["入金待ち", "payment_wait"], ["入金確認", "payment_confirm"], ["製作中", "production"], 
+                ["発送準備中", "prepare_shipping"], ["発送済み", "shipped"]], { selected: @order.status }, { class: "px-2 text-center" } %>
+              <%= f.submit "更新", class: "btn btn-sm btn-success ml-4" %>
+            <% end %>
           </td>
         </tr>
       </table>
     </div>
   </div>
   <div class="row">
-    <div class="col-8">
-      <table class="table mt-5">
+    <div class="col-9">
+      <table class="table mt-4">
         <thead class="thead-light">
           <th>商品名</th>
           <th>単価 (税込)</th>
           <th>数量</th>
           <th>小計</th>
           <th>製作ステータス</th>
-          <th></th>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>着手不可</td>
-            <td><%= link_to "更新", admin_root_path, class: "btn btn-sm btn-success" %></td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>着手不可</td>
-            <td><%= link_to "更新", admin_root_path, class: "btn btn-sm btn-success" %></td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>着手不可</td>
-            <td><%= link_to "更新", admin_root_path, class: "btn btn-sm btn-success" %></td>
-          </tr>
+          <% @order_details.each do |detail| %>
+            
+            
+            <tr>
+              <td><%= detail.item.name %></td>
+              <td><%= detail.price.to_s(:delimited) %></td>
+              <td><%= detail.amount %></td>
+              <td><%= (detail.price * detail.amount).to_s(:delimited) %></td>
+              <td>
+                <%= form_with model: detail, url: admin_order_detail_path(detail.id), method: :patch do |f| %>
+                  <%= f.select :making_status, [["着手不可", "not_ready"], ["製作待ち", "wait_production"], ["製作中", "production"], 
+                    ["製作完了", "completed"]], { selected: detail.making_status }, { class: "px-3 text-center" } %>
+                  <%= f.submit "更新", class: "btn btn-sm btn-success ml-4" %>
+                <% end %>
+              </td>
+            </tr>
+            
+          <% end %>
         </tbody>
       </table>
     </div>
-    <div class="col-4 mt-auto mb-3">
+    
+    <div class="col-3 mt-auto mb-3">
+      <!--商品合計-->
+      <% item_total = OrderDetail.item_total(@order_details) %>
+      <!--送料-->
+      <% postage = @order.postage %>
+      
       <table class="ml-4">
         <tr>
           <th>商品合計</th>
-          <td>6490円</td>
+          <td><%= item_total.to_s(:delimited) %>円</td>
         </tr>
         <tr>
           <th>送料</th>
-          <td>800円</td>
+          <td><%= postage.to_s(:delimited) %>円</td>
         </tr>
         <tr>
           <th>請求金額合計　</th>
-          <td>7290円</td>
+          <td><%= (item_total + postage).to_s(:delimited) %>円</td>
         </tr>
       </table>
     </div>

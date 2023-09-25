@@ -15,6 +15,11 @@ class Item < ApplicationRecord
   validates :genre, presence: true
   validates :tax_excluded_price, presence: true, numericality: { only_integer: true, greater_than: 0}
 
+
+  def add_tax_excluded_price
+    (self.tax_excluded_price * 1.10).round
+  end
+
  def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpeg')
@@ -24,5 +29,6 @@ class Item < ApplicationRecord
  end
 
  scope :new_arrivals, -> { where(is_new: true).order(created_at: :desc) }
+ paginates_per 8
 
 end

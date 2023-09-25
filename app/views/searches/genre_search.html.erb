@@ -1,0 +1,26 @@
+
+  <div class="col-md-8">
+    <h3>検索結果</h3>
+
+    <div class="search-items d-flex flex-wrap">
+      <% @items.each do |item| %>
+      <div class="search-item mr-2">
+        <%= link_to item_path(item.id) do %>
+          <%= image_tag item.image, size: "200x150" %>
+        <% end %>
+        <p><%= item.name %></p>
+        <p>¥<%= item.price %></p>
+      </div>
+      <% end %>
+    </div>
+   <% if @item.present? %>
+  <!-- @item のデータを表示するコード -->
+  <%= paginate @item, theme: 'bootstrap-5' %>
+<% else %>
+  <!-- @item が存在しない場合の処理 -->
+  <p>No items found.</p>
+<% end %>
+  </div>
+
+
+  </div>

@@ -1,12 +1,9 @@
 class Public::ItemsController < ApplicationController
 
   def index
-    if params[:genre_id].present?
-     @items = Item.where(genre_id: params[:genre_id])
-    else
-     @items = Item.all
-    end
-     @genres = Genre.all
+    @item = Item.all
+    @genres = Genre.all
+    @items = params[:name].present? ? Genre.find(params[:name]).books : Item.all
   end
 
   def show
@@ -14,3 +11,6 @@ class Public::ItemsController < ApplicationController
     @cart_item = CartItem.new
   end
 end
+
+
+

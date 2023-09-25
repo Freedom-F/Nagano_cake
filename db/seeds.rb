@@ -1,3 +1,7 @@
+Admin.create!(
+   email: '1234@gmail',
+   password: '123456'
+)
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -7,15 +11,15 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 # ジャンルを作成
 genre = Genre.create!(
-  name: "ケーキ"
+ name: "ケーキ"
 )
 
 item = Item.create!(
-  genre_id: genre.id,
-  name: "チーズケーキ",
-  tax_excluded_price: 400,
-  explanation: "濃厚チーズ",
-  is_sold_out: false,
+ genre_id: genre.id,
+ name: "チーズケーキ",
+ tax_excluded_price: 400,
+ explanation: "濃厚チーズ",
+ is_sold_out: false,
 )
 
 # 商品に画像を関連付ける
