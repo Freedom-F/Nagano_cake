@@ -1,8 +1,9 @@
 <div class="container">
   <div class="row">
-    <%= render 'searches/genre' %>
-
-    <div class="col-md-8 offset-md-4">
+    <div class="col-md-4">
+      <%= render 'searches/genre' %>
+    </div>
+    <div class="col-md-8">
       <div class="row">
         <h3>商品一覧</h3>
         <p><%= Item.count %> 件の商品があります。</p>
@@ -11,15 +12,17 @@
       <div class="row">
         <% Item.all.each do |item| %>
           <div class="col-md-3">
-            <%= link_to item_path(item) do %>
-              <%= image_tag item.get_image %>
-            <% end %>
-            <h2><%= item.name %></h2>
+            <div class="card mb-4">
+              <%= link_to item_path(item) do %>
+                <%= image_tag item.get_image, class: "card-img-top" %>
+              <% end %>
+              <div class="card-body">
+                <h5 class="card-title"><%= item.name %></h5>
+              </div>
+            </div>
           </div>
         <% end %>
       </div>
     </div>
   </div>
 </div>
-
-
