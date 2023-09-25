@@ -39,7 +39,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     get 'orders/show'
     resources :cart_items, only: [:index, :create, :update, :destroy]
     resources :items, only: [:index, :show]
-    # get 'information/edit', to: 'customers#edit', as: 'edit_information'
+    get 'information/edit', to: 'customers#edit', as: 'edit_information'
   end
 
 
