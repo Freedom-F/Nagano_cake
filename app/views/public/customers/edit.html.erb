@@ -2,8 +2,8 @@
   <div class="row mt-2 mb-3 offset-1 text-center">
     <h3 class="px-4 title-background">会員情報編集</h3>
   </div>
-  
-   <%= form_with model: @customer, url:public_customers_information_path, method: :patch do |f| %>
+
+   <%= form_with model: @customer, url:customers_information_path, method: :patch do |f| %>
   <table>
     <tr>
       <td>氏名</td>
@@ -34,8 +34,8 @@
   </table>
   <div class="form-group">
     <%= f.submit " 編集内容を保存 ", class: "btn btn-success" %>
-    <%= link_to "退会する", public_customers_confirm_path, class: "btn btn-danger ml-5" %>
+    <%= link_to "退会する", customers_confirm_path, class: "btn btn-danger ml-5" %>
   </div>
-  
+
   <% end %>
 </div>

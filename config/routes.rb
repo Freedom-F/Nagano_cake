@@ -26,20 +26,13 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     patch 'customers/information' => "customers#update"
     get 'customers/confirm' => "customers#confirm"
     patch 'costomers/out' => "customers#out"
-    resources :items, only: [:index, :show]
     resources :orders, only: [:new, :create, :show, :index]
     post 'orders/confirm' => "orders#confirm"
     get 'orders/thanx' => "orders#thanx"
     resources :cart_items, only: [:index, :create, :destroy, :update]
     delete 'cart_items/destroy_all' => "cart_items#destroy_all"
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
-    get 'orders/new'
-    post 'orders/create'
-    get 'orders/index'
-    get 'orders/show'
-    resources :cart_items, only: [:index, :create, :update, :destroy]
     resources :items, only: [:index, :show]
-    get 'information/edit', to: 'customers#edit', as: 'edit_information'
   end
 
 
@@ -51,7 +44,6 @@ namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]
     resources :genres, only: [:index, :edit, :create, :update]
     resources :items, only: [:index, :create, :new, :show, :edit, :update]
-
   end
 
 end
