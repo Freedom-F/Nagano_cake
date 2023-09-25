@@ -14,7 +14,8 @@
           <div class="col-md-3">
             <div class="card mb-4">
               <%= link_to item_path(item) do %>
-                <%= image_tag item.get_image, class: "card-img-top" %>
+                <%= image_tag item.get_image, class: "card-img-top", style: "max-height: 200px; max-width: 200px;" %>
+
               <% end %>
               <div class="card-body">
                 <h5 class="card-title"><%= item.name %></h5>
