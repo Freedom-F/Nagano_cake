@@ -14,4 +14,9 @@ class OrderDetail < ApplicationRecord
     
     return total
   end
+
+   ## 小計を求めるメソッド
+  def subtotal
+      price * amount
+  end
 end
