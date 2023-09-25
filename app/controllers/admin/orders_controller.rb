@@ -5,10 +5,15 @@ class Admin::OrdersController < ApplicationController
   end
 
   def update
-    order = Order.find(params[:id])
+    @order = Order.find(params[:id])
     
-    order.update(order_params)
-    redirect_to admin_order_path
+    if @order.update(order_params)
+      redirect_to admin_order_path, notice: "注文ステータスを更新しました。"
+    else
+      flash.now[:danger] = "予期せぬエラーが発生しました"
+      @order_details = @order.order_details
+      render 'show'
+    end
   end
   
   def order_params

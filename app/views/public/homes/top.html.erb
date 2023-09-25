@@ -15,7 +15,7 @@
    <% if @new_items.present? %>
     <div class="row">
     <% @new_items.each do |item| %>
-      <%= link_to public_path(item) do %>
+      <%= link_to path(item) do %>
         <%= image_tag item.get_image %>
       <% end %>
     <% end %>

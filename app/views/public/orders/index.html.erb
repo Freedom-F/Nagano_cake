@@ -5,19 +5,32 @@
         <tr>
           <th>注文日</th>
           <th>配送先</th>
+          <th>注文商品</th>
           <th>支払金額</th>
           <th>ステータス</th>
-          <th>詳細</th>
+          <th>注文詳細</th>
+
         </tr>
       </thead>
       <tbody>
         <% @orders.each do |order| %>
           <tr>
-            <td><%= order.order_date %></td>
-            <td><%= order.shipping_address %></td>
-            <td><%= order.payment_amount %></td>
-            <td><%= order.status %></td>
-            <td><%= link_to '詳細', public_orders_show_path(order) %></td>
+            <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+            <td>
+              〒<%= order.post_code %><br>
+              <%= order.address %><br>
+              <%= order.name %>
+            </td>
+            <td>
+              <ul class="list-unstyled">
+                <% order.order_details.each do |order_detail|  %>
+                  <li><%= order_detail.item.name %></li>
+                <% end %>
+              </ul>
+            </td>
+            <td><%= order.total_amount.to_i %>円</td>
+            <td><%= order.status_i18n %></td>
+            <td><%= link_to '詳細', order_path(order) %></td>
           </tr>
         <% end %>
       </tbody>
