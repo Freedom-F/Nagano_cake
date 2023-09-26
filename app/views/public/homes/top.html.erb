@@ -5,25 +5,27 @@
       購入には会員登録が必要になります。</h3>
 </div>
 
+
 <div class="container">
   <div class="row">
-
-<h3>新着商品</h3>
-</div>
- <div class="row">
-
-   <% if @new_items.present? %>
-    <div class="row">
-    <% @new_items.each do |item| %>
-      <%= link_to path(item) do %>
-        <%= image_tag item.get_image %>
-      <% end %>
-    <% end %>
+    <h3>新着商品</h3>
   </div>
-<% else %>
-  <p>新着商品はありません。</p>
-<% end %>
-</div>
-    </div>
+  <div class="row">
+        <% Item.all.each do |item| %>
+          <div class="col-md-3">
+            <div class="card mb-4">
+              <%= link_to item_path(item) do %>
+                <%= image_tag item.get_image(150, 150) %>
 
-<%= link_to "すべての商品をみる>", items_path %>
+              <% end %>
+              <div class="card-body">
+                <h5 class="card-title"><%= item.name %></h5>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+</div>
+<div class="d-flex justify-content-end">
+  <%= link_to "すべての商品をみる", items_path %>
+</div>
