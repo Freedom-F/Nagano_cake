@@ -13,3 +13,24 @@
  *= require_tree .
  *= require_self
  */
+
+nav {
+  height: 100px;
+} 
+
+.nav-item {
+  margin-left: 25px;
+}
+
+.nav-item a {
+  color: 	#666666;
+}
+
+.navbar-brand i {
+  font-size: 40px;
+}
+
+.logo_text {
+  font-size: 38px;
+  font-family: Chalkduster, "Bradley Hand", Courier, "Segoe Print", sans-serif;
+}
