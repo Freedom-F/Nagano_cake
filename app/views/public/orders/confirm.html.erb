@@ -15,7 +15,7 @@
               <% @cart_items.each do |cart_item| %>
                <tr>
                  <th>
-                   <%= image_tag cart_item.item.get_image %>
+                   <%= image_tag cart_item.item.get_image(100, 100) %>
                    <%= cart_item.item.name %>
            　     </th>
                  <th><%= cart_item.item.add_tax_excluded_price.to_i %>円</th>
