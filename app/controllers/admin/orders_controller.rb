@@ -8,6 +8,11 @@ class Admin::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     
     if @order.update(order_params)
+      
+      if @order.status == "payment_confirm"
+        OrderDetail.where(order_id: @order.id).update_all(making_status: "wait_production")
+      end
+      
       redirect_to admin_order_path, notice: "注文ステータスを更新しました。"
     else
       flash.now[:danger] = "予期せぬエラーが発生しました"
