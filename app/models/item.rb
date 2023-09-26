@@ -20,13 +20,15 @@ class Item < ApplicationRecord
     (self.tax_excluded_price * 1.10).round
   end
 
- def get_image(width, height)
-    unless image.attached?
-      file_path = Rails.root.join('app/assets/images/no_image.jpeg')
-      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
-    end
-    image.variant(resize_to_limit: [100, 100]).processed
- end
+
+def get_image(width, height)
+  unless image.attached?
+    file_path = Rails.root.join('app/assets/images/no_image.jpeg')
+    image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+  end
+  image.variant(resize_to_limit: [width, height]).processed
+end
+
 
  scope :new_arrivals, -> { where(is_new: true).order(created_at: :desc) }
  paginates_per 8
