@@ -57,5 +57,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem "enum_help"
 gem 'pry-rails'
-gem 'kaminari','~> 1.2.1'(())
+gem 'kaminari','~> 1.2.1'
 gem 'ransack'
